@@ -1,13 +1,13 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+#import plotly.express as px
 import requests
-import yfinance as yahooFinance
-from yahoo_fin import stock_info as si
+#import yfinance as yahooFinance
+#from yahoo_fin import stock_info as si
 import snowflake.connector
-import warnings
-warnings.filterwarnings("ignore")
-st.set_page_config(layout="wide")
+#import warnings
+#warnings.filterwarnings("ignore")
+#st.set_page_config(layout="wide")
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
