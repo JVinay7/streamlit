@@ -7,4 +7,4 @@ yahoo_fin
 openpyxl
 yfinance
 matplotlib
-plotly
+plotly==5.14.1
