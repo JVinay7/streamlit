@@ -1,20 +1,22 @@
+#pip install yahoo_fin
+#pip install openpyxl
+#pip install yfinance
 import streamlit as st
 import pandas as pd
-
-
-import matplotlib.pyplot  as plt
+import numpy as np
 import plotly.express as px
 import requests
-import yfinance as yahooFinance
+import matplotlib.pyplot as plt
 from yahoo_fin import stock_info as si
+from sklearn import datasets
+import yfinance as yahooFinance
 
 import warnings
 warnings.filterwarnings("ignore")
 st.set_page_config(layout="wide")
-
+## Main Title
 original_title1 = '<p style="font-family:Courier;text-align:center; color:Blue; font-size: 40px;">Investment Portfolio Dashboard</p>'
-st.write(original_title1 ,unsafe_allow_html=True)
-
+st.write(original_title1  ,unsafe_allow_html=True)
 
 data=pd.read_excel("my_share_profile.xlsx")
 data1=data.groupby(["Category"]).agg({"Invested Amount":"sum"}).reset_index()
@@ -24,7 +26,6 @@ data2.columns=["Category","Invested Quantity"]
 
 data1=data1.set_index("Category")
 data2=data2.set_index("Category")
-
 
 
 original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Amount and Quantity Visualization</p>'
@@ -80,6 +81,12 @@ with col2:
 # st.write(data6)
 
 
+
+
+
+
+
+
 agree=st.sidebar.checkbox("Want to compare with live update")
 p=0
 if agree:
@@ -110,12 +117,10 @@ data1.columns=["Category","Invested Amount","Current Value","Total Profit"]
 data1=data1.sort_values(by="Total Profit", axis=0, ascending=False)
 st.table(data1)
 
-
 if(a1=="ETF"):
     pass
 else:
     data2=data[data["Category"]==a1]
-
 
 original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Comparing with in Category</p>'
 st.write(original_title1  ,unsafe_allow_html=True)
