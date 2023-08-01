@@ -20,13 +20,13 @@ st.title("Data from Snowflake")
 st.write("Column Names:", data.columns)
 
 
-data1=data.groupby(["category"]).agg({"InvestedAmount":"sum"}).reset_index()
-data1.columns=["category","Invested Amount"]
-data2=data.groupby(["category"]).agg({"ShareCount":"sum"}).reset_index()
-data2.columns=["category","Invested Quantity"]
+data1=data.groupby(["CATEGORY"]).agg({"INVESTEDAMOUNT":"sum"}).reset_index()
+data1.columns=["CATEGORY","INVESTEDAMOUNT"]
+data2=data.groupby(["CATEGORY"]).agg({"SHARECOUNT":"sum"}).reset_index()
+data2.columns=["CATEGORY","Invested Quantity"]
 
-data1=data1.set_index("category")
-data2=data2.set_index("category")
+data1=data1.set_index("CATEGORY")
+data2=data2.set_index("CATEGORY")
 
 original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Amount and Quantity Visualization</p>'
 st.write(original_title1  ,unsafe_allow_html=True)
@@ -34,29 +34,29 @@ col1, col2 = st.columns(2)
 with col1: 
     scatter_fig = plt.figure(figsize=(6,4))
     scatter_ax = scatter_fig.add_subplot(111)
-    plt.xlabel("category")
+    plt.xlabel("CATEGORY")
     plt.ylabel("Amount Invested")
     data1.plot.bar(alpha=0.9, ax=scatter_ax, rot=45)
     st.pyplot(scatter_fig)
 with col2:
     bar_fig = plt.figure(figsize=(6,4))
     bar_ax = bar_fig.add_subplot(111)
-    plt.xlabel("category")
+    plt.xlabel("CATEGORY")
     plt.ylabel("Quantity of Shares in category")
     data2.plot.bar(alpha=0.8, ax=bar_ax, rot=45)
     st.pyplot(bar_fig)
 
-st.sidebar.markdown("## category :")
-n1=list(data["category"].unique())
-a1 = st.sidebar.selectbox("category", n1)
+st.sidebar.markdown("## CATEGORY :")
+n1=list(data["CATEGORY"].unique())
+a1 = st.sidebar.selectbox("CATEGORY", n1)
 
 original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Shares in Selected Category</p>'
 st.write(original_title1  ,unsafe_allow_html=True)
-data3=data[data["category"]==a1]
-data4=data3[["shares","buyprice"]]
-data4=data4.set_index("shares")
-data5=data3[["shares","ShareCount"]]
-data5=data5.set_index("shares")
+data3=data[data["CATEGORY"]==a1]
+data4=data3[["SHARES","BUYPRICE"]]
+data4=data4.set_index("SHARES")
+data5=data3[["SHARES","SHARECOUNT"]]
+data5=data5.set_index("SHARES")
 col1, col2 = st.columns(2)
 with col1: 
     scatter_fig = plt.figure(figsize=(6,4))
@@ -74,9 +74,9 @@ with col2:
 if(a1=="ETF"):
     pass
 else:
-    st.sidebar.markdown("## Shares :")
-    n2=list(data3["shares"].unique())
-    a2 = st.sidebar.selectbox("shares", n2)
-    data6=data3[data3["shares"]==a2]
+    st.sidebar.markdown("## SHARES :")
+    n2=list(data3["SHARES"].unique())
+    a2 = st.sidebar.selectbox("SHARES", n2)
+    data6=data3[data3["SHARES"]==a2]
 st.write(data6)
 
