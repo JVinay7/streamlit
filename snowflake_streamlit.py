@@ -64,8 +64,7 @@ with col2:
     bar_ax = bar_fig.add_subplot(111)
     plt.ylabel("Quantity of Shares")
     data5.plot.bar(alpha=0.8, ax=bar_ax, rot=45)
-    st.pyplot(bar_fig)s":"sum"}).reset_index()
-data2.columns=["Category","Invested Quantity"]
+    st.pyplot(bar_fig)
 
 if(a1=="ETF"):
     pass
