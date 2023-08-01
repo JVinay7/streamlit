@@ -15,11 +15,10 @@ my_cur = my_cnx.cursor()
 my_cur.execute("select * from my_share_profiletb")
 my_data_row = my_cur.fetchall()
 data = pd.DataFrame(my_data_row, columns=[desc[0] for desc in my_cur.description])
-data=pd.read_excel("my_share_profile.xlsx")
 data1=data.groupby(["Category"]).agg({"Invested Amount":"sum"}).reset_index()
 data1.columns=["Category","Invested Amount"]
-data2=data.groupby(["Category"]).agg({"Share Coundata1=data1.set_index("Category")
-data2=data2.set_index("Category")
+data2=data.groupby(["Category"]).agg({"Share Counts":"sum"}).reset_index()
+data2.columns=["Category","Invested Quantity"]
 
 data1=data1.set_index("Category")
 data2=data2.set_index("Category")
