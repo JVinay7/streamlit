@@ -2,7 +2,7 @@
 snowflake-connector-python
 requests==2.28.1
 streamlit
-pandas
+pandas==2.0.3
 yahoo_fin
 openpyxl
 yfinance
