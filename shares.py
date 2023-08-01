@@ -1,6 +1,3 @@
-#pip install yahoo_fin
-#pip install openpyxl
-#pip install yfinance
 import streamlit as st
 import pandas as pd
 import numpy as np
