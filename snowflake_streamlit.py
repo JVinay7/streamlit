@@ -14,7 +14,7 @@ my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from my_share_profiletb")
 my_data_row = my_cur.fetchall()
-data = pd.read_csv(my_data_row)
+#data = pd.read_csv(my_data_row)
 st.text("Hello from Snowflake:")
 st.dataframe(my_data_row)
 
