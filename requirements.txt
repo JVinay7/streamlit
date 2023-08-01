@@ -8,4 +8,4 @@ yahoo_fin
 openpyxl
 yfinance
 matplotlib
-
+scikit-learn
