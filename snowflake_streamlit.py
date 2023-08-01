@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import snowflake.connector
 import warnings
+from urllib.error import URLError
 warnings.filterwarnings("ignore")
 st.set_page_config(layout="wide")
 
