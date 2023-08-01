@@ -15,6 +15,9 @@ my_cur = my_cnx.cursor()
 my_cur.execute("select * from my_share_profiletb")
 my_data_row = my_cur.fetchall()
 data = pd.DataFrame(my_data_row, columns=[desc[0] for desc in my_cur.description])
+st.title("Data from Snowflake")
+st.dataframe(df)
+
 data1=data.groupby(["Category"]).agg({"Invested Amount":"sum"}).reset_index()
 data1.columns=["Category","Invested Amount"]
 data2=data.groupby(["Category"]).agg({"Share Counts":"sum"}).reset_index()
