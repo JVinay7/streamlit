@@ -3,8 +3,9 @@ snowflake-connector-python
 requests==2.28.1
 streamlit
 pandas==2.0.3
+plotly==5.14.1
 yahoo_fin
 openpyxl
 yfinance
 matplotlib
-plotly==5.14.1
+
