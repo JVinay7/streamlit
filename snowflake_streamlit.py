@@ -18,6 +18,8 @@ data = pd.DataFrame(my_data_row, columns=[desc[0] for desc in my_cur.description
 st.title("Data from Snowflake")
 st.dataframe(data)
 
+print(data.columns)
+
 data1=data.groupby(["category"]).agg({"InvestedAmount":"sum"}).reset_index()
 data1.columns=["category","Invested Amount"]
 data2=data.groupby(["category"]).agg({"ShareCount":"sum"}).reset_index()
