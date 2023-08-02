@@ -94,7 +94,7 @@ with col2:
     my_data_row = my_cur.fetchall()
     data = pd.DataFrame(my_data_row, columns=[desc[0] for desc in my_cur.description])
     data=data[data["CATEGORY"]!="ETF"]
-    data["Live Price"]=data["tickerforyahoo"].apply(lambda i:round(si.get_live_price(i), 3))
+    data["Live Price"]=data["TICKERFORYAHOO"].apply(lambda i:round(si.get_live_price(i), 3))
     data["Total Amount"]=data["Live Price"]*data["ShareCount"]
     data["Total Profit"]=data["Total Amount"]-data["INVESTEDAMOUNT"]
     data["Per Share perofit"]=data["Live Price"]-data["buyprice"]
