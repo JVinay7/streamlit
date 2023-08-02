@@ -21,9 +21,9 @@ my_cur = my_cnx.cursor()
 my_cur.execute("select * from my_share_profiletb")
 my_data_row = my_cur.fetchall()
 data = pd.DataFrame(my_data_row, columns=[desc[0] for desc in my_cur.description])
-st.title("Data from Snowflake")
+# st.title("Data from Snowflake")
 #st.dataframe(data)
-st.write("Column Names:", data.columns)
+# st.write("Column Names:", data.columns)
 
 
 data1=data.groupby(["CATEGORY"]).agg({"INVESTEDAMOUNT":"sum"}).reset_index()
