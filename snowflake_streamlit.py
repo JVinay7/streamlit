@@ -86,9 +86,9 @@ with col2:
 #     data6=data3[data3["SHARES"]==a2]
 # st.write(data6)
 
-# agree=st.sidebar.checkbox("Want to compare with live update")
-# p=0
-# if agree:
+agree=st.sidebar.checkbox("Want to compare with live update")
+p=0
+if agree:
     #data=pd.read_excel("my_share_profile.xlsx")
     my_cur.execute("select * from my_share_profiletb")
     my_data_row = my_cur.fetchall()
@@ -97,69 +97,68 @@ with col2:
     data["Live Price"]=data["TICKERFORYAHOO"].apply(lambda i:round(si.get_live_price(i), 3))
     data["Total Amount"]=data["Live Price"]*data["SHARECOUNT"]
     data["Total Profit"]=data["Total Amount"]-data["INVESTEDAMOUNT"]
-    data["Per Share perofit"]=data["Live Price"]-data["BUYPRICE"]
+    data["Per Share profit"]=data["Live Price"]-data["BUYPRICE"]
     data.to_csv("new_data.csv",index=False)
     
     
 data=pd.read_csv("new_data.csv")
-st.write("Column Names:", data.columns)
-# Total_Invested_Amount=data["INVESTEDAMOUNT"].sum()
-# Total_current_value=data["Total Amount"].sum()
-# total_profit=Total_current_value-Total_Invested_Amount
-# original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Comparing With Return</p>'
-# st.write(original_title1  ,unsafe_allow_html=True)
+Total_Invested_Amount=data["INVESTEDAMOUNT"].sum()
+Total_current_value=data["Total Amount"].sum()
+total_profit=Total_current_value-Total_Invested_Amount
+original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Comparing With Return</p>'
+st.write(original_title1  ,unsafe_allow_html=True)
 
-# col1, col2 ,col3= st.columns(3)
-# with col1:
-#     st.write("INVESTEDAMOUNT",Total_Invested_Amount)
-# with col2:
-#     st.write("Current Value",Total_current_value)
-# with col3:
-#     st.write("Profit",total_profit)
-# data1=data.groupby(["Category"]).agg({"INVESTEDAMOUNT":"sum","Total Amount":"sum","Total Profit":"sum"}).reset_index()
-# data1.columns=["Category","INVESTEDAMOUNT","Current Value","Total Profit"]
-# data1=data1.sort_values(by="Total Profit", axis=0, ascending=False)
-# st.table(data1)
-
-
-# if(a1=="ETF"):
-#     pass
-# else:
-#     data2=data[data["Category"]==a1]
+col1, col2 ,col3= st.columns(3)
+with col1:
+    st.write("INVESTEDAMOUNT",Total_Invested_Amount)
+with col2:
+    st.write("Current Value",Total_current_value)
+with col3:
+    st.write("Profit",total_profit)
+data1=data.groupby(["CATEGORY"]).agg({"INVESTEDAMOUNT":"sum","Total Amount":"sum","Total Profit":"sum"}).reset_index()
+data1.columns=["CATEGORY","INVESTEDAMOUNT","Current Value","Total Profit"]
+data1=data1.sort_values(by="Total Profit", axis=0, ascending=False)
+st.table(data1)
 
 
-# original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Comparing with in Category</p>'
-# st.write(original_title1  ,unsafe_allow_html=True)
-# data3=data2[["shares","buy price","INVESTEDAMOUNT","Total Amount","Total Profit","Per Share perofit"]]
-# data3=data3.sort_values(by="Total Profit", axis=0, ascending=False)
-# st.table(data3)
+if(a1=="ETF"):
+    pass
+else:
+    data2=data[data["CATEGORY"]==a1]
 
 
-# original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Share wise Analysis</p>'
-# st.write(original_title1  ,unsafe_allow_html=True)
+original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Comparing with in Category</p>'
+st.write(original_title1  ,unsafe_allow_html=True)
+data3=data2[["SHARES","BUYPRICE","INVESTEDAMOUNT","Total Amount","Total Profit","Per Share profit"]]
+data3=data3.sort_values(by="Total Profit", axis=0, ascending=False)
+st.table(data3)
 
-# st.sidebar.markdown("## Shares :")
-# n2=list(data2["shares"].unique())
-# a2 = st.sidebar.selectbox("shares", n2)
-# data6=data2[data2["shares"]==a2]
-# data7=data6.drop(["index","Category","ticker for yahoo"],axis=1)
-# st.write(data7)
-# m=list(data6["ticker for yahoo"])
-# m1=m[0]
 
-# data_fin = yahooFinance.Ticker(m1)
-# data_fin1=data_fin.history(period="12mo")
-# data_fin2=data_fin1[["Close"]]
-# max1=list(data_fin2.max())
-# min1=list(data_fin2.min())
-# col1, col2 = st.columns(2)
-# with col1:
-#     st.write("Last 1 year Max Close Value",max1[0])
-# with col2:
-#     st.write("Last 1 year Min Close Value",min1[0])
+original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Share wise Analysis</p>'
+st.write(original_title1  ,unsafe_allow_html=True)
 
-# original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Last 1 year closing plot</p>'
-# st.write(original_title1  ,unsafe_allow_html=True)
+st.sidebar.markdown("## Shares :")
+n2=list(data2["shares"].unique())
+a2 = st.sidebar.selectbox("SHARES", n2)
+data6=data2[data2["SHARES"]==a2]
+data7=data6.drop(["INDEX","CATEGORY","TICKERFORYAHOO"],axis=1)
+st.write(data7)
+m=list(data6["TICKERFORYAHOO"])
+m1=m[0]
 
-# st.line_chart(data_fin2)
+data_fin = yahooFinance.Ticker(m1)
+data_fin1=data_fin.history(period="12mo")
+data_fin2=data_fin1[["Close"]]
+max1=list(data_fin2.max())
+min1=list(data_fin2.min())
+col1, col2 = st.columns(2)
+with col1:
+    st.write("Last 1 year Max Close Value",max1[0])
+with col2:
+    st.write("Last 1 year Min Close Value",min1[0])
+
+original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; font-size: 30px;">Last 1 year closing plot</p>'
+st.write(original_title1  ,unsafe_allow_html=True)
+
+st.line_chart(data_fin2)
 
