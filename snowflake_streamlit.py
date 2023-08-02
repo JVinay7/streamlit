@@ -86,9 +86,9 @@ with col2:
 #     data6=data3[data3["SHARES"]==a2]
 # st.write(data6)
 
-agree=st.sidebar.checkbox("Want to compare with live update")
-p=0
-if agree:
+# agree=st.sidebar.checkbox("Want to compare with live update")
+# p=0
+# if agree:
     #data=pd.read_excel("my_share_profile.xlsx")
     my_cur.execute("select * from my_share_profiletb")
     my_data_row = my_cur.fetchall()
