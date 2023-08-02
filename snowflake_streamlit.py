@@ -138,7 +138,7 @@ original_title1 = '<p style="font-family:Courier;text-align:left; color:Blue; fo
 st.write(original_title1  ,unsafe_allow_html=True)
 
 st.sidebar.markdown("## Shares :")
-n2=list(data2["shares"].unique())
+n2=list(data2["SHARES"].unique())
 a2 = st.sidebar.selectbox("SHARES", n2)
 data6=data2[data2["SHARES"]==a2]
 data7=data6.drop(["INDEX","CATEGORY","TICKERFORYAHOO"],axis=1)
