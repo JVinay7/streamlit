@@ -98,8 +98,8 @@ with col2:
     data["Total Amount"]=data["Live Price"]*data["SHARECOUNT"]
     data["Total Profit"]=data["Total Amount"]-data["INVESTEDAMOUNT"]
     data["Per Share perofit"]=data["Live Price"]-data["BUYPRICE"]
-    df = data.to_csv("new_data.csv",index=False)
-    st.write(df.columns)
+    data.to_csv("new_data.csv",index=False)
+    st.write(data.columns)
     
 # data=pd.read_csv("new_data.csv")
 # Total_Invested_Amount=data["INVESTEDAMOUNT"].sum()
