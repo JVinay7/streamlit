@@ -1,11 +1,5 @@
 import streamlit as st
 
-# st.button("Reset", type="primary")
-# if st.button('Say hello'):
-#     st.write('Why hello there')
-# else:
-#     st.write('Goodbye')
-
 # Create a Streamlit button
 if st.button("Open Pop-up"):
     # When the button is clicked, set a flag to open the pop-up
